@@ -4,7 +4,7 @@ const { Pool } = require('pg');
 const app = express();
 
 // DB connection details come from environment variables
-// new comment
+// new commen
 const pool = new Pool({
   host: process.env.DB_HOST,
   user: process.env.POSTGRES_USER,
