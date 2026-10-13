@@ -3,3 +3,5 @@
 *.txt
 *secret*.yaml
 *.pem
+node_modules/
+*.orig

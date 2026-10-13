@@ -39,5 +39,9 @@ app.get('/api/visit', async (req, res) => {
   }
 });
 
-app.listen(3000, () => console.log('Backend listening on port 3000'));
-initDb();
+if (require.main === module) {
+  app.listen(3000, () => console.log('Backend listening on port 3000'));
+  initDb();
+}
+
+module.exports = app;
