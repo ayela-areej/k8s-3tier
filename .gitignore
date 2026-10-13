@@ -1,0 +1,5 @@
+*.bak
+*.bak2
+*.txt
+*secret*.yaml
+*.pem

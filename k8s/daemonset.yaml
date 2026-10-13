@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: log-collector
+  namespace: demo-app
+spec:
+  selector:
+    matchLabels:
+      app: log-collector
+  template:
+    metadata:
+      labels:
+        app: log-collector
+    spec:
+      tolerations:
+        - key: project
+          operator: Equal
+          value: voter
+          effect: NoSchedule
+      containers:
+        - name: collector
+          image: busybox:1.36
+          command: ["sh", "-c", "while true; do echo \"$(date) node=$NODE_NAME pod logs on this node:\"; ls /var/log/pods | head -5; sleep 30; done"]
+          env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 50m
+              memory: 32Mi
+          volumeMounts:
+            - name: varlog
+              mountPath: /var/log/pods
+              readOnly: true
+      volumes:
+        - name: varlog
+          hostPath:
+            path: /var/log/pods

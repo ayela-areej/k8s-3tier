@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><title>K8s 3-Tier App</title></head>
+<body style="font-family:sans-serif;text-align:center;margin-top:80px">
+  <h1>Kubernetes 3-Tier App</h1>
+  <p>Frontend → Backend → Database</p>
+  <h2 id="count">Click the button</h2>
+  <button onclick="visit()">Register a visit</button>
+  <script>
+    async function visit() {
+      const r = await fetch('/api/visit');
+      const d = await r.json();
+      document.getElementById('count').innerText = 'Total visits: ' + d.visits;
+    }
+  </script>
+</body>
+</html>
