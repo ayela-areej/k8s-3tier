@@ -22,7 +22,7 @@ spec:
           effect: NoSchedule
       containers:
         - name: backend
-          image: ayela/demo-backend:9e33f96de3a4af7bfbbc58caa2cea392fca5f84f
+          image: ayela/demo-backend:11c99946e8da80cffed043d798854962fef7a6cc
           ports:
             - containerPort: 3000
           envFrom:
